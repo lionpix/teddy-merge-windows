@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Page
+    x:Class="TeddyMerge.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:TeddyMerge.Models"
+    mc:Ignorable="d"
+    Background="#FDF8F5">
+
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="TeddyMerge" FontSize="28" FontWeight="Bold" Foreground="#3E2723" Margin="0,0,0,20"/>
+
+        <!-- Document List Area -->
+        <Border Grid.Row="1" Background="White" CornerRadius="8" BorderBrush="#205D4037" BorderThickness="1"
+                AllowDrop="True" DragOver="OnDragOver" Drop="OnDrop">
+            <Grid>
+                <ListView x:Name="DocumentListView" 
+                          ItemsSource="{x:Bind ViewModel.Documents, Mode=OneWay}"
+                          SelectionMode="Single"
+                          CanReorderItems="True" AllowDrop="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:DocumentItem">
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- File Info -->
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{x:Bind FileName}" FontWeight="SemiBold" Foreground="#5D4037"/>
+                                    <TextBlock Text="{x:Bind FilePath}" FontSize="12" Foreground="Gray"/>
+                                </StackPanel>
+
+                                <!-- Actions -->
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                                    <Button Content="↑" Click="OnMoveUpClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent"/>
+                                    <Button Content="↓" Click="OnMoveDownClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent"/>
+                                    <Button Content="✕" Click="OnRemoveClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent" Foreground="#D32F2F"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <TextBlock x:Name="EmptyStateText" 
+                           Text="Drag and Drop PDFs or Images here" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Foreground="#8D6E63" FontSize="16" FontStyle="Italic"/>
+            </Grid>
+        </Border>
+
+        <!-- Footer Actions -->
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="16">
+                <!-- Progress -->
+                <ProgressRing x:Name="MergeProgress" IsActive="False" Visibility="Collapsed" Foreground="#5D4037"/>
+                
+                <Button Content="Clear All" Click="OnClearClicked" Foreground="#5D4037" Background="Transparent" BorderBrush="LightGray"/>
+                
+                <Button Content="Merge Documents" Click="OnMergeClicked" 
+                        Background="#5D4037" Foreground="White" CornerRadius="4" Padding="16,8"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

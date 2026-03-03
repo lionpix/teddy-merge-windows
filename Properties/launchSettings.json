@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TeddyMerge (Unpackaged)": {
+      "commandName": "Project"
+    },
+    "TeddyMerge (Package)": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
