@@ -1,0 +1,6 @@
+Startup Exception: Operation is not valid due to the current state of the object.
+   at WinRT.ExceptionHelpers.<ThrowExceptionForHR>g__Throw|38_0(Int32 hr)
+   at WinRT.ExceptionHelpers.ThrowExceptionForHR(Int32 hr)
+   at ABI.Windows.Storage.IApplicationDataStaticsMethods.get_Current(IObjectReference _obj)
+   at Windows.Storage.ApplicationData.get_Current()
+   at TeddyMerge.App..ctor() in C:\Dev\LionPix\teddy-merge-windows\App.xaml.cs:line 18

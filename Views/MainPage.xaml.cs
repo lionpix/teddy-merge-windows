@@ -158,7 +158,12 @@ public sealed partial class MainPage : Page
     {
         if (sender is MenuFlyoutItem item && item.Tag is string lang)
         {
-            Windows.Storage.ApplicationData.Current.LocalSettings.Values["AppLanguage"] = lang;
+            var localAppData = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+            var appDir = System.IO.Path.Combine(localAppData, "TeddyMerge");
+            System.IO.Directory.CreateDirectory(appDir);
+            
+            System.IO.File.WriteAllText(System.IO.Path.Combine(appDir, "settings.txt"), lang);
+            
             Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
             _ = ShowRestartDialog();
         }

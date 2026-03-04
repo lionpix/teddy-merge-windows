@@ -10,34 +10,44 @@ namespace TeddyMerge
         public static Window? MainWindow { get; private set; }
 
         /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public App()
         {
-            // Load language before UI initializes
-            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            if (localSettings.Values.TryGetValue("AppLanguage", out object langObj) && langObj is string lang)
+            try 
             {
-                Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
-            }
-
-            this.InitializeComponent();
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-
-            this.UnhandledException += (s, e) =>
-            {
-                e.Handled = true;
-                System.IO.File.WriteAllText("crash.log", $"UI Exception: {e.Exception?.Message}\n{e.Exception?.StackTrace}");
-            };
-
-            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
-            {
-                if (e.ExceptionObject is Exception ex)
+                var localAppData = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+                var settingsPath = System.IO.Path.Combine(localAppData, "TeddyMerge", "settings.txt");
+                
+                if (System.IO.File.Exists(settingsPath))
                 {
-                    System.IO.File.WriteAllText("crash_domain.log", $"Domain Exception: {ex.Message}\n{ex.StackTrace}");
+                    string lang = System.IO.File.ReadAllText(settingsPath).Trim();
+                    if (!string.IsNullOrEmpty(lang))
+                    {
+                        Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
+                    }
                 }
-            };
+
+                this.InitializeComponent();
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+                this.UnhandledException += (s, e) =>
+                {
+                    e.Handled = true;
+                    System.IO.File.WriteAllText("crash.log", $"UI Exception: {e.Exception?.Message}\n{e.Exception?.StackTrace}");
+                };
+
+                AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+                {
+                    if (e.ExceptionObject is Exception ex)
+                    {
+                        System.IO.File.WriteAllText("crash_domain.log", $"Domain Exception: {ex.Message}\n{ex.StackTrace}");
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                System.IO.File.WriteAllText("startup_crash.log", $"Startup Exception: {ex.Message}\n{ex.StackTrace}");
+                throw;
+            }
         }
 
         /// <summary>
