@@ -15,8 +15,29 @@ namespace TeddyMerge
         /// </summary>
         public App()
         {
+            // Load language before UI initializes
+            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (localSettings.Values.TryGetValue("AppLanguage", out object langObj) && langObj is string lang)
+            {
+                Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
+            }
+
             this.InitializeComponent();
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+            this.UnhandledException += (s, e) =>
+            {
+                e.Handled = true;
+                System.IO.File.WriteAllText("crash.log", $"UI Exception: {e.Exception?.Message}\n{e.Exception?.StackTrace}");
+            };
+
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                if (e.ExceptionObject is Exception ex)
+                {
+                    System.IO.File.WriteAllText("crash_domain.log", $"Domain Exception: {ex.Message}\n{ex.StackTrace}");
+                }
+            };
         }
 
         /// <summary>

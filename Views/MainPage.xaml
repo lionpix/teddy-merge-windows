@@ -17,42 +17,121 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Text="TeddyMerge" FontSize="28" FontWeight="Bold" Foreground="#3E2723" Margin="0,0,0,20"/>
+        <Grid Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Image Source="/Assets/teddy_merge_wide_transparent.png" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+
+            <!-- Top Right Action Bar -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <!-- DropDown for Language -->
+                <DropDownButton Background="Transparent" BorderBrush="Transparent" Padding="4">
+                    <DropDownButton.Content>
+                        <FontIcon Glyph="&#xE7C1;" FontFamily="Segoe Fluent Icons" Foreground="#3E2723" />
+                    </DropDownButton.Content>
+                    <DropDownButton.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="English" Click="OnLanguageClicked" Tag="en-US" />
+                            <MenuFlyoutItem Text="Español" Click="OnLanguageClicked" Tag="es-ES" />
+                            <MenuFlyoutItem Text="Français" Click="OnLanguageClicked" Tag="fr-FR" />
+                            <MenuFlyoutItem Text="Deutsch" Click="OnLanguageClicked" Tag="de-DE" />
+                            <MenuFlyoutItem Text="Italiano" Click="OnLanguageClicked" Tag="it-IT" />
+                            <MenuFlyoutItem Text="日本語" Click="OnLanguageClicked" Tag="ja-JP" />
+                        </MenuFlyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+                <!-- Trash (Clear All) -->
+                <Button Background="Transparent" BorderBrush="Transparent" Padding="4" x:Uid="ClearAllBtn" Click="OnClearClicked">
+                    <FontIcon Glyph="&#xE74D;" FontFamily="Segoe Fluent Icons" Foreground="#3E2723" />
+                </Button>
+                <!-- Options (3 dots) -->
+                <Button Background="Transparent" BorderBrush="Transparent" Padding="4">
+                    <Button.Content>
+                        <FontIcon Glyph="&#xE712;" FontFamily="Segoe Fluent Icons" Foreground="#3E2723"/>
+                    </Button.Content>
+                    <Button.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="VersionBtn" Text="Version 1.0.0" IsEnabled="False" />
+                            <MenuFlyoutItem x:Uid="CheckUpdateBtn" Text="Check for Updates" Click="OnCheckUpdateClicked" />
+                            <MenuFlyoutItem x:Uid="AboutBtn" Text="About" Click="OnAboutClicked" />
+                        </MenuFlyout>
+                    </Button.Flyout>
+                </Button>
+            </StackPanel>
+        </Grid>
 
         <!-- Document List Area -->
-        <Border Grid.Row="1" Background="White" CornerRadius="8" BorderBrush="#205D4037" BorderThickness="1"
+        <Border Grid.Row="1" Background="Transparent" CornerRadius="0" BorderThickness="0"
                 AllowDrop="True" DragOver="OnDragOver" Drop="OnDrop">
             <Grid>
                 <ListView x:Name="DocumentListView" 
                           ItemsSource="{x:Bind ViewModel.Documents, Mode=OneWay}"
-                          SelectionMode="Single"
-                          CanReorderItems="True" AllowDrop="True">
+                          SelectionMode="None"
+                          CanReorderItems="True" AllowDrop="True" HorizontalAlignment="Stretch">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Margin" Value="0,0,0,8" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="models:DocumentItem">
-                            <Grid Padding="10">
+                            <Grid Padding="16" Background="White" CornerRadius="12" BorderBrush="#10000000" BorderThickness="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 
+                                <!-- File Icon -->
+                                <Border Grid.RowSpan="2" Width="40" Height="40" CornerRadius="6" Background="#FCE4EC" Margin="0,0,16,0" VerticalAlignment="Top">
+                                    <FontIcon Glyph="&#xE8A5;" Foreground="#D32F2F" />
+                                </Border>
+
                                 <!-- File Info -->
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{x:Bind FileName}" FontWeight="SemiBold" Foreground="#5D4037"/>
-                                    <TextBlock Text="{x:Bind FilePath}" FontSize="12" Foreground="Gray"/>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock Text="{x:Bind FileName}" FontWeight="SemiBold" FontSize="16" Foreground="#3E2723"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <TextBlock Text="{x:Bind FilePath}" FontSize="12" Foreground="Gray"/>
+                                        <TextBlock Text="•" FontSize="12" Foreground="Gray"/>
+                                        <TextBlock Text="{x:Bind PageCount, Mode=OneWay}" FontSize="12" Foreground="Gray"/>
+                                        <TextBlock x:Uid="PagesCount" Text="pages" FontSize="12" Foreground="Gray"/>
+                                    </StackPanel>
                                 </StackPanel>
 
                                 <!-- Actions -->
-                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                                    <Button Content="↑" Click="OnMoveUpClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent"/>
-                                    <Button Content="↓" Click="OnMoveDownClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent"/>
-                                    <Button Content="✕" Click="OnRemoveClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent" Foreground="#D32F2F"/>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                                    <Button Click="OnMoveUpClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent" Padding="8">
+                                        <FontIcon Glyph="&#xE74A;" FontFamily="Segoe Fluent Icons" FontSize="14" Foreground="#8D6E63"/>
+                                    </Button>
+                                    <Button Click="OnMoveDownClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent" Padding="8">
+                                        <FontIcon Glyph="&#xE74B;" FontFamily="Segoe Fluent Icons" FontSize="14" Foreground="#8D6E63"/>
+                                    </Button>
+                                    <Button Click="OnRemoveClicked" Tag="{x:Bind}" Background="Transparent" BorderBrush="Transparent" Padding="8">
+                                        <FontIcon Glyph="&#xE74D;" FontFamily="Segoe Fluent Icons" FontSize="14" Foreground="#D32F2F"/>
+                                    </Button>
+                                    <FontIcon Glyph="&#xE700;" FontFamily="Segoe Fluent Icons" FontSize="16" Foreground="#8D6E63" Margin="8,0,0,0"/> <!-- Visual Drag Handle -->
                                 </StackPanel>
+                                
+                                <!-- Page Range Input -->
+                                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
+                                         x:Uid="PageRangeTxt"
+                                         Text="{x:Bind PageRange, Mode=TwoWay}" 
+                                         PlaceholderText="Page Range (e.g. 1-19, 1, 3)" 
+                                         Margin="0,12,0,0" CornerRadius="6" BorderBrush="#208D6E63" Background="White" Padding="12,8" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 
-                <TextBlock x:Name="EmptyStateText" 
+                <TextBlock x:Name="EmptyStateText" x:Uid="EmptyStateText"
                            Text="Drag and Drop PDFs or Images here" 
                            HorizontalAlignment="Center" VerticalAlignment="Center"
                            Foreground="#8D6E63" FontSize="16" FontStyle="Italic"/>
@@ -60,16 +139,11 @@
         </Border>
 
         <!-- Footer Actions -->
-        <Grid Grid.Row="2" Margin="0,20,0,0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="16">
-                <!-- Progress -->
-                <ProgressRing x:Name="MergeProgress" IsActive="False" Visibility="Collapsed" Foreground="#5D4037"/>
-                
-                <Button Content="Clear All" Click="OnClearClicked" Foreground="#5D4037" Background="Transparent" BorderBrush="LightGray"/>
-                
-                <Button Content="Merge Documents" Click="OnMergeClicked" 
-                        Background="#5D4037" Foreground="White" CornerRadius="4" Padding="16,8"/>
-            </StackPanel>
-        </Grid>
+        <StackPanel Grid.Row="2" Margin="0,20,0,0" Spacing="8">
+            <ProgressRing x:Name="MergeProgress" IsActive="False" Visibility="Collapsed" Foreground="#5D4037" HorizontalAlignment="Center"/>
+            
+            <Button x:Uid="AddFilesBtn" Content="+ Add Files" Click="OnAddFilesClicked" Background="#FDE0D9" Foreground="#3E2723" FontWeight="SemiBold" HorizontalAlignment="Stretch" CornerRadius="8" Padding="12"/>
+            <Button x:Uid="MergeDocsBtn" Content="Merge Documents" Click="OnMergeClicked" Background="#FFF5F2" Foreground="#3E2723" FontWeight="SemiBold" HorizontalAlignment="Stretch" CornerRadius="8" Padding="12"/>
+        </StackPanel>
     </Grid>
 </Page>

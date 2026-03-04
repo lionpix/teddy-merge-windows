@@ -131,4 +131,75 @@ public sealed partial class MainPage : Page
             }
         }
     }
+
+    private async void OnAddFilesClicked(object sender, RoutedEventArgs e)
+    {
+        var picker = new FileOpenPicker();
+        var hwnd = WindowNative.GetWindowHandle(App.MainWindow);
+        InitializeWithWindow.Initialize(picker, hwnd);
+
+        picker.ViewMode = PickerViewMode.List;
+        picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+        picker.FileTypeFilter.Add(".pdf");
+        picker.FileTypeFilter.Add(".jpg");
+        picker.FileTypeFilter.Add(".jpeg");
+        picker.FileTypeFilter.Add(".png");
+        picker.FileTypeFilter.Add(".tiff");
+        picker.FileTypeFilter.Add(".tif");
+
+        var files = await picker.PickMultipleFilesAsync();
+        foreach (var file in files)
+        {
+            ViewModel.AddDocument(file.Path);
+        }
+    }
+
+    private void OnLanguageClicked(object sender, RoutedEventArgs e)
+    {
+        if (sender is MenuFlyoutItem item && item.Tag is string lang)
+        {
+            Windows.Storage.ApplicationData.Current.LocalSettings.Values["AppLanguage"] = lang;
+            Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
+            _ = ShowRestartDialog();
+        }
+    }
+
+    private async Task ShowRestartDialog()
+    {
+        var xamlRoot = App.MainWindow?.Content?.XamlRoot ?? this.XamlRoot;
+        if (xamlRoot == null) return;
+
+        ContentDialog dialog = new ContentDialog
+        {
+            Title = "Language Changed",
+            Content = "Please restart the application for language changes to take effect.",
+            CloseButtonText = "OK",
+            XamlRoot = xamlRoot
+        };
+        await dialog.ShowAsync();
+    }
+
+    private async void OnCheckUpdateClicked(object sender, RoutedEventArgs e)
+    {
+        ContentDialog dialog = new ContentDialog
+        {
+            Title = "Update Check",
+            Content = "You are currently running the latest version.",
+            CloseButtonText = "OK",
+            XamlRoot = this.XamlRoot
+        };
+        await dialog.ShowAsync();
+    }
+
+    private async void OnAboutClicked(object sender, RoutedEventArgs e)
+    {
+        ContentDialog dialog = new ContentDialog
+        {
+            Title = "About TeddyMerge",
+            Content = "TeddyMerge is a tool to combine PDFs and Images into a single PDF document quickly and easily.\n\nVersion 1.0.0",
+            CloseButtonText = "OK",
+            XamlRoot = this.XamlRoot
+        };
+        await dialog.ShowAsync();
+    }
 }

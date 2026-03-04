@@ -1,0 +1,26 @@
+﻿  Determining projects to restore...
+  All projects are up-to-date for restore.
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(31,46): warning CS8612: Nullability of reference types in type of 'event PropertyChangedEventHandler DocumentItem.PropertyChanged' doesn't match implicitly implemented member 'event PropertyChangedEventHandler? INotifyPropertyChanged.PropertyChanged'. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(32,79): warning CS8625: Cannot convert null literal to non-nullable reference type. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(49,58): warning CS0618: 'PdfDocumentOpenMode.InformationOnly' is obsolete: 'InformationOnly is not implemented, use Import instead.' [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(37,12): warning CS8618: Non-nullable event 'PropertyChanged' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the event as nullable. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Services\ImageToPdfConverter.cs(38,26): warning CS0618: 'XUnit.implicit operator XUnit(double)' is obsolete: 'In PDFsharp 6.1 implicit conversion from double is marked obsolete, because it led to misunderstandings and unexpected behavior. Provide the unit by XUnit.FromPoint() or use the new class XUnitPt instead.' [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Services\ImageToPdfConverter.cs(39,27): warning CS0618: 'XUnit.implicit operator XUnit(double)' is obsolete: 'In PDFsharp 6.1 implicit conversion from double is marked obsolete, because it led to misunderstandings and unexpected behavior. Provide the unit by XUnit.FromPoint() or use the new class XUnitPt instead.' [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+  TeddyMerge -> C:\Dev\LionPix\teddy-merge-windows\bin\x64\Debug\net10.0-windows10.0.19041.0\win-x64\TeddyMerge.dll
+WINAPPSDKGENERATEPROJECTPRIFILE : error : PRI175: 0xdef00502 - Processing Resources [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+WINAPPSDKGENERATEPROJECTPRIFILE : error : PRI224: 0xdef00502 - root node not found. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+
+Build FAILED.
+
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(31,46): warning CS8612: Nullability of reference types in type of 'event PropertyChangedEventHandler DocumentItem.PropertyChanged' doesn't match implicitly implemented member 'event PropertyChangedEventHandler? INotifyPropertyChanged.PropertyChanged'. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(32,79): warning CS8625: Cannot convert null literal to non-nullable reference type. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(49,58): warning CS0618: 'PdfDocumentOpenMode.InformationOnly' is obsolete: 'InformationOnly is not implemented, use Import instead.' [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Models\DocumentItem.cs(37,12): warning CS8618: Non-nullable event 'PropertyChanged' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the event as nullable. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Services\ImageToPdfConverter.cs(38,26): warning CS0618: 'XUnit.implicit operator XUnit(double)' is obsolete: 'In PDFsharp 6.1 implicit conversion from double is marked obsolete, because it led to misunderstandings and unexpected behavior. Provide the unit by XUnit.FromPoint() or use the new class XUnitPt instead.' [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+C:\Dev\LionPix\teddy-merge-windows\Services\ImageToPdfConverter.cs(39,27): warning CS0618: 'XUnit.implicit operator XUnit(double)' is obsolete: 'In PDFsharp 6.1 implicit conversion from double is marked obsolete, because it led to misunderstandings and unexpected behavior. Provide the unit by XUnit.FromPoint() or use the new class XUnitPt instead.' [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+WINAPPSDKGENERATEPROJECTPRIFILE : error : PRI175: 0xdef00502 - Processing Resources [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+WINAPPSDKGENERATEPROJECTPRIFILE : error : PRI224: 0xdef00502 - root node not found. [C:\Dev\LionPix\teddy-merge-windows\TeddyMerge.csproj]
+    6 Warning(s)
+    2 Error(s)
+
+Time Elapsed 00:00:05.28

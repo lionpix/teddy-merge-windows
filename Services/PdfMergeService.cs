@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
@@ -19,18 +20,65 @@ public class PdfMergeService
             {
                 using PdfDocument inputDocument = PdfReader.Open(doc.FilePath, PdfDocumentOpenMode.Import);
                 int count = inputDocument.PageCount;
-                for (int idx = 0; idx < count; idx++)
+                var pagesToExtract = ParsePageRange(doc.PageRange, count);
+                
+                foreach (int zeroBasedIdx in pagesToExtract)
                 {
-                    PdfPage page = inputDocument.Pages[idx];
-                    outputDocument.AddPage(page);
+                    if (zeroBasedIdx >= 0 && zeroBasedIdx < count)
+                    {
+                        PdfPage page = inputDocument.Pages[zeroBasedIdx];
+                        outputDocument.AddPage(page);
+                    }
                 }
             }
             else if (doc.Extension == ".jpg" || doc.Extension == ".jpeg" || doc.Extension == ".png" || doc.Extension == ".tiff" || doc.Extension == ".tif")
             {
+                // For images, we just append them. If they provided a range we ignore it for now unless it's a multi-page tiff, which is handled inside ImageToPdfConverter if supported.
                 await ImageToPdfConverter.AppendImageAsPdfPagesAsync(doc.FilePath, outputDocument);
             }
         }
 
         outputDocument.Save(outputFilePath);
+    }
+
+    private IEnumerable<int> ParsePageRange(string rangeString, int maxPages)
+    {
+        if (string.IsNullOrWhiteSpace(rangeString))
+        {
+            for (int i = 0; i < maxPages; i++) yield return i;
+            yield break;
+        }
+
+        var parts = rangeString.Split(',', StringSplitOptions.RemoveEmptyEntries);
+        foreach (var part in parts)
+        {
+            var p = part.Trim();
+            if (string.IsNullOrEmpty(p)) continue;
+
+            if (p.Contains("-"))
+            {
+                var split = p.Split('-');
+                if (split.Length == 2 && int.TryParse(split[0], out int start) && int.TryParse(split[1], out int end))
+                {
+                    start = Math.Max(1, start);
+                    end = Math.Min(maxPages, end);
+                    if (start <= end)
+                    {
+                        for (int i = start; i <= end; i++) yield return i - 1;
+                    }
+                    else
+                    {
+                        for (int i = start; i >= end; i--) yield return i - 1;
+                    }
+                }
+            }
+            else if (int.TryParse(p, out int page))
+            {
+                if (page >= 1 && page <= maxPages)
+                {
+                    yield return page - 1;
+                }
+            }
+        }
     }
 }
