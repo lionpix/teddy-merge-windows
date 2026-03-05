@@ -82,7 +82,48 @@
   <data name="MergeDocsBtn.Content" xml:space="preserve">
     <value>ドキュメントを結合</value>
   </data>
-  <data name="PagesCount" xml:space="preserve">
+  <data name="PagesCount.Text" xml:space="preserve">
     <value>ページ</value>
+  </data>
+  <data name="DropFilesToAdd" xml:space="preserve">
+    <value>追加するファイルをドロップ</value>
+  </data>
+  <data name="PdfDocument" xml:space="preserve">
+    <value>PDFドキュメント</value>
+  </data>
+  <data name="MergedSuffix" xml:space="preserve">
+    <value>_結合.pdf</value>
+  </data>
+  <data name="MergeCompleteTitle" xml:space="preserve">
+    <value>結合完了</value>
+  </data>
+  <data name="MergeCompleteContent" xml:space="preserve">
+    <value>ドキュメントが {0} に正常に保存されました</value>
+  </data>
+  <data name="OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MergeFailedTitle" xml:space="preserve">
+    <value>結合失敗</value>
+  </data>
+  <data name="LanguageChangedTitle" xml:space="preserve">
+    <value>言語が変更されました</value>
+  </data>
+  <data name="LanguageChangedContent" xml:space="preserve">
+    <value>言語の変更を有効にするには、アプリケーションを再起動してください。</value>
+  </data>
+  <data name="UpdateCheckTitle" xml:space="preserve">
+    <value>更新を確認</value>
+  </data>
+  <data name="UpdateCheckContent" xml:space="preserve">
+    <value>現在、最新バージョンを実行しています。</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>TeddyMerge について</value>
+  </data>
+  <data name="AboutContent" xml:space="preserve">
+    <value>TeddyMerge は、PDF と画像をすばやく簡単に1つの PDF ドキュメントに結合するツールです。
+
+バージョン 1.0.0</value>
   </data>
 </root>

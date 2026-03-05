@@ -17,6 +17,7 @@ public sealed partial class MainPage : Page
 {
     public DocumentManager ViewModel { get; } = new DocumentManager();
     private PdfMergeService _mergeService = new PdfMergeService();
+    private readonly Microsoft.Windows.ApplicationModel.Resources.ResourceLoader _resourceLoader = new();
 
     public MainPage()
     {
@@ -33,7 +34,7 @@ public sealed partial class MainPage : Page
     private void OnDragOver(object sender, DragEventArgs e)
     {
         e.AcceptedOperation = DataPackageOperation.Copy;
-        e.DragUIOverride.Caption = "Drop files to add";
+        e.DragUIOverride.Caption = _resourceLoader.GetString("DropFilesToAdd");
     }
 
     private async void OnDrop(object sender, DragEventArgs e)
@@ -91,10 +92,10 @@ public sealed partial class MainPage : Page
         InitializeWithWindow.Initialize(filePicker, hwnd);
 
         filePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-        filePicker.FileTypeChoices.Add("PDF Document", new List<string>() { ".pdf" });
+        filePicker.FileTypeChoices.Add(_resourceLoader.GetString("PdfDocument"), new List<string>() { ".pdf" });
         
         var firstItemName = System.IO.Path.GetFileNameWithoutExtension(ViewModel.Documents[0].FileName);
-        filePicker.SuggestedFileName = $"{firstItemName}_merged.pdf";
+        filePicker.SuggestedFileName = $"{firstItemName}{_resourceLoader.GetString("MergedSuffix")}";
 
         StorageFile file = await filePicker.PickSaveFileAsync();
         if (file != null)
@@ -108,9 +109,9 @@ public sealed partial class MainPage : Page
                 
                 ContentDialog successDialog = new ContentDialog
                 {
-                    Title = "Merge Complete",
-                    Content = $"Document successfully saved to {file.Name}",
-                    CloseButtonText = "OK",
+                    Title = _resourceLoader.GetString("MergeCompleteTitle"),
+                    Content = string.Format(_resourceLoader.GetString("MergeCompleteContent"), file.Name),
+                    CloseButtonText = _resourceLoader.GetString("OkButton"),
                     XamlRoot = this.XamlRoot
                 };
                 await successDialog.ShowAsync();
@@ -119,9 +120,9 @@ public sealed partial class MainPage : Page
             {
                 ContentDialog errDialog = new ContentDialog
                 {
-                    Title = "Merge Failed",
+                    Title = _resourceLoader.GetString("MergeFailedTitle"),
                     Content = ex.Message,
-                    CloseButtonText = "OK",
+                    CloseButtonText = _resourceLoader.GetString("OkButton"),
                     XamlRoot = this.XamlRoot
                 };
                 await errDialog.ShowAsync();
@@ -178,33 +179,37 @@ public sealed partial class MainPage : Page
 
         ContentDialog dialog = new ContentDialog
         {
-            Title = "Language Changed",
-            Content = "Please restart the application for language changes to take effect.",
-            CloseButtonText = "OK",
+            Title = _resourceLoader.GetString("LanguageChangedTitle"),
+            Content = _resourceLoader.GetString("LanguageChangedContent"),
+            CloseButtonText = _resourceLoader.GetString("OkButton"),
             XamlRoot = xamlRoot
         };
         await dialog.ShowAsync();
     }
 
-    private async void OnCheckUpdateClicked(object sender, RoutedEventArgs e)
-    {
-        ContentDialog dialog = new ContentDialog
-        {
-            Title = "Update Check",
-            Content = "You are currently running the latest version.",
-            CloseButtonText = "OK",
-            XamlRoot = this.XamlRoot
-        };
-        await dialog.ShowAsync();
-    }
+
 
     private async void OnAboutClicked(object sender, RoutedEventArgs e)
     {
+        var contentPanel = new StackPanel { Spacing = 10 };
+        contentPanel.Children.Add(new TextBlock 
+        { 
+            Text = _resourceLoader.GetString("AboutContent"), 
+            TextWrapping = TextWrapping.Wrap 
+        });
+        
+        var linkButton = new HyperlinkButton
+        {
+            Content = "www.teddymerge.com",
+            NavigateUri = new Uri("https://www.teddymerge.com")
+        };
+        contentPanel.Children.Add(linkButton);
+
         ContentDialog dialog = new ContentDialog
         {
-            Title = "About TeddyMerge",
-            Content = "TeddyMerge is a tool to combine PDFs and Images into a single PDF document quickly and easily.\n\nVersion 1.0.0",
-            CloseButtonText = "OK",
+            Title = _resourceLoader.GetString("AboutTitle"),
+            Content = contentPanel,
+            CloseButtonText = _resourceLoader.GetString("OkButton"),
             XamlRoot = this.XamlRoot
         };
         await dialog.ShowAsync();

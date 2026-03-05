@@ -55,7 +55,6 @@
                     <Button.Flyout>
                         <MenuFlyout>
                             <MenuFlyoutItem x:Uid="VersionBtn" Text="Version 1.0.0" IsEnabled="False" />
-                            <MenuFlyoutItem x:Uid="CheckUpdateBtn" Text="Check for Updates" Click="OnCheckUpdateClicked" />
                             <MenuFlyoutItem x:Uid="AboutBtn" Text="About" Click="OnAboutClicked" />
                         </MenuFlyout>
                     </Button.Flyout>

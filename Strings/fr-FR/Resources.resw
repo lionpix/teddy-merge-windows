@@ -82,7 +82,48 @@
   <data name="MergeDocsBtn.Content" xml:space="preserve">
     <value>Fusionner les Documents</value>
   </data>
-  <data name="PagesCount" xml:space="preserve">
+  <data name="PagesCount.Text" xml:space="preserve">
     <value>pages</value>
+  </data>
+  <data name="DropFilesToAdd" xml:space="preserve">
+    <value>Déposez les fichiers à ajouter</value>
+  </data>
+  <data name="PdfDocument" xml:space="preserve">
+    <value>Document PDF</value>
+  </data>
+  <data name="MergedSuffix" xml:space="preserve">
+    <value>_fusionne.pdf</value>
+  </data>
+  <data name="MergeCompleteTitle" xml:space="preserve">
+    <value>Fusion terminée</value>
+  </data>
+  <data name="MergeCompleteContent" xml:space="preserve">
+    <value>Document enregistré avec succès sous {0}</value>
+  </data>
+  <data name="OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="MergeFailedTitle" xml:space="preserve">
+    <value>Échec de la fusion</value>
+  </data>
+  <data name="LanguageChangedTitle" xml:space="preserve">
+    <value>Langue modifiée</value>
+  </data>
+  <data name="LanguageChangedContent" xml:space="preserve">
+    <value>Veuillez redémarrer l'application pour que les modifications de langue prennent effet.</value>
+  </data>
+  <data name="UpdateCheckTitle" xml:space="preserve">
+    <value>Vérifier les mises à jour</value>
+  </data>
+  <data name="UpdateCheckContent" xml:space="preserve">
+    <value>Vous utilisez actuellement la dernière version.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>À propos de TeddyMerge</value>
+  </data>
+  <data name="AboutContent" xml:space="preserve">
+    <value>TeddyMerge est un outil permettant de combiner rapidement et facilement des PDF et des images en un seul document PDF.
+
+Version 1.0.0</value>
   </data>
 </root>
