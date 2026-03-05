@@ -33,15 +33,14 @@ public class PdfMergeService
             }
             else if (doc.Extension == ".jpg" || doc.Extension == ".jpeg" || doc.Extension == ".png" || doc.Extension == ".tiff" || doc.Extension == ".tif")
             {
-                // For images, we just append them. If they provided a range we ignore it for now unless it's a multi-page tiff, which is handled inside ImageToPdfConverter if supported.
-                await ImageToPdfConverter.AppendImageAsPdfPagesAsync(doc.FilePath, outputDocument);
+                await ImageToPdfConverter.AppendImageAsPdfPagesAsync(doc.FilePath, doc.PageRange, outputDocument);
             }
         }
 
         outputDocument.Save(outputFilePath);
     }
 
-    private IEnumerable<int> ParsePageRange(string rangeString, int maxPages)
+    public static IEnumerable<int> ParsePageRange(string rangeString, int maxPages)
     {
         if (string.IsNullOrWhiteSpace(rangeString))
         {

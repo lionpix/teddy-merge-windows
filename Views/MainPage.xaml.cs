@@ -92,7 +92,9 @@ public sealed partial class MainPage : Page
 
         filePicker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
         filePicker.FileTypeChoices.Add("PDF Document", new List<string>() { ".pdf" });
-        filePicker.SuggestedFileName = "MergedDocument.pdf";
+        
+        var firstItemName = System.IO.Path.GetFileNameWithoutExtension(ViewModel.Documents[0].FileName);
+        filePicker.SuggestedFileName = $"{firstItemName}_merged.pdf";
 
         StorageFile file = await filePicker.PickSaveFileAsync();
         if (file != null)

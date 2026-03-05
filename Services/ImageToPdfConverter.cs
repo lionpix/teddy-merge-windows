@@ -10,7 +10,7 @@ namespace TeddyMerge.Services;
 
 public static class ImageToPdfConverter
 {
-    public static async Task AppendImageAsPdfPagesAsync(string imagePath, PdfDocument outputDocument)
+    public static async Task AppendImageAsPdfPagesAsync(string imagePath, string pageRange, PdfDocument outputDocument)
     {
         StorageFile file = await StorageFile.GetFileFromPathAsync(imagePath);
         using var stream = await file.OpenReadAsync();
@@ -18,9 +18,13 @@ public static class ImageToPdfConverter
         BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
         uint frameCount = decoder.FrameCount;
 
-        for (uint i = 0; i < frameCount; i++)
+        var pagesToExtract = PdfMergeService.ParsePageRange(pageRange, (int)frameCount);
+
+        foreach (int i in pagesToExtract)
         {
-            BitmapFrame frame = await decoder.GetFrameAsync(i);
+            if (i < 0 || i >= frameCount) continue;
+
+            BitmapFrame frame = await decoder.GetFrameAsync((uint)i);
             
             using var memStream = new Windows.Storage.Streams.InMemoryRandomAccessStream();
             BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, memStream);

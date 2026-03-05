@@ -67,6 +67,18 @@ namespace TeddyMerge
             }
 
             _ = rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+            MainWindow.Title = "TeddyMerge";
+            try
+            {
+                var iconPath = System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "Assets", "icon.ico");
+                MainWindow.AppWindow.SetIcon(iconPath);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to set icon: {ex.Message}");
+            }
+
             MainWindow.Activate();
         }
 
