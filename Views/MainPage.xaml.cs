@@ -77,6 +77,49 @@ public sealed partial class MainPage : Page
         }
     }
 
+    private void OnPageRangeTextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
+    {
+        var text = sender.Text;
+        if (string.IsNullOrEmpty(text)) return;
+
+        var filtered = new string(text.Where(c => char.IsDigit(c) || c == ',' || c == '-' || c == ' ').ToArray());
+        
+        if (sender.DataContext is DocumentItem item)
+        {
+            var max = item.PageCount;
+            var newFiltered = string.Empty;
+            long currentNum = 0;
+            
+            foreach (char c in filtered)
+            {
+                if (char.IsDigit(c))
+                {
+                    long nextNum = currentNum * 10 + (c - '0');
+                    if (nextNum > max) 
+                    {
+                        continue;
+                    }
+                    currentNum = nextNum;
+                    newFiltered += c;
+                }
+                else
+                {
+                    currentNum = 0;
+                    newFiltered += c;
+                }
+            }
+            filtered = newFiltered;
+        }
+
+        if (text != filtered)
+        {
+            int pos = sender.SelectionStart;
+            int diff = text.Length - filtered.Length;
+            sender.Text = filtered;
+            sender.SelectionStart = Math.Max(0, pos - diff);
+        }
+    }
+
     private void OnClearClicked(object sender, RoutedEventArgs e)
     {
         ViewModel.Clear();

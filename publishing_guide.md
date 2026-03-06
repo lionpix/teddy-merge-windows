@@ -23,8 +23,8 @@ Before you begin, ensure you have:
 You need to link your local project to the name you just reserved in the Store.
 
 1. Open your solution (`.sln`) in **Visual Studio**.
-2. Right-click on your main project (the one containing `Package.appxmanifest`) in the **Solution Explorer**.
-3. Select **Publish** -> **Associate App with the Store...**.
+2. Right-click on your **Project Name** (`TeddyMerge`) in the **Solution Explorer** *(DO NOT right-click the `Package.appxmanifest` file).*
+3. Select **Package and Publish** -> **Associate App with the Store...** (Sometimes this might just say **Publish** -> **Associate App with the Store...**).
 4. Follow the prompts to sign in to your Microsoft Developer account.
 5. Select the app name you reserved in Step 1 and click **Next** then **Associate**.
 
@@ -36,14 +36,15 @@ You need to link your local project to the name you just reserved in the Store.
 Now you need to generate the `.msixupload` or `.msixbundle` file that the Store requires.
 
 1. Keep Visual Studio open.
-2. Right-click your project again, go to **Publish** -> **Create App Packages...**.
-3. Select **Microsoft Store under a new app name** (or the name you just associated if it asks).
-4. On the **Select and Configure Packages** screen:
+2. Right-click your **Project Name** (`TeddyMerge`) again in the Solution Explorer.
+3. Select **Package and Publish** -> **Create App Packages...**.
+4. Select **Microsoft Store under a new app name** (or the name you just associated if it asks).
+5. On the **Select and Configure Packages** screen:
    - Make sure the output location is somewhere you can easily find.
    - For **Architecture**, select `x64` and `ARM64` (and `x86` if you wish to support 32-bit systems). 
    - Set the **Generate app bundle** dropdown to **Always**.
-5. Click **Create**.
-6. Visual Studio will build your project and run the Windows App Certification Kit (WACK) automatically to test for Store compliance. 
+6. Click **Create**.
+7. Visual Studio will build your project and run the Windows App Certification Kit (WACK) automatically to test for Store compliance. 
    - *Ensure the WACK tests pass. If they fail, review the errors, fix them in your code, and recreate the packages.*
 
 ---
@@ -81,3 +82,4 @@ Once your `.msixupload` file is ready, go back to the Partner Center.
 
 > [!TIP]
 > Keep an eye on the email associated with your developer account. If your app fails certification, Microsoft will send an email detailing exactly what policy was violated and how to fix it.
+>End

@@ -39,3 +39,6 @@ _ReSharper*/
 publish.log
 run.log
 build.log
+AppPackages/
+BundleArtifacts/
+
