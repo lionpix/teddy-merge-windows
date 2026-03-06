@@ -39,8 +39,8 @@ public static class ImageToPdfConverter
             PdfPage page = outputDocument.AddPage();
             // Convert pixels to points (1 point = 1/72 inch). Assume 96 DPI for scaling,
             // or just use XImage PointWidth and PointHeight which PdfSharp calculates.
-            page.Width = xImage.PointWidth;
-            page.Height = xImage.PointHeight;
+            page.Width = XUnit.FromPoint(xImage.PointWidth);
+            page.Height = XUnit.FromPoint(xImage.PointHeight);
             
             using XGraphics gfx = XGraphics.FromPdfPage(page);
             gfx.DrawImage(xImage, 0, 0, page.Width.Point, page.Height.Point);

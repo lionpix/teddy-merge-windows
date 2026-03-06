@@ -70,15 +70,11 @@
   <data name="EmptyStateText.Text" xml:space="preserve">
     <value>Trascina qui PDF o Immagini</value>
   </data>
-  <data name="CheckUpdateBtn.Text" xml:space="preserve">
-    <value>Controlla Aggiornamenti</value>
-  </data>
+
   <data name="AboutBtn.Text" xml:space="preserve">
     <value>Informazioni</value>
   </data>
-  <data name="VersionBtn.Text" xml:space="preserve">
-    <value>Versione</value>
-  </data>
+
   <data name="MergeDocsBtn.Content" xml:space="preserve">
     <value>Unisci Documenti</value>
   </data>
@@ -112,18 +108,11 @@
   <data name="LanguageChangedContent" xml:space="preserve">
     <value>Riavvia l'applicazione affinché le modifiche alla lingua abbiano effetto.</value>
   </data>
-  <data name="UpdateCheckTitle" xml:space="preserve">
-    <value>Controlla gli aggiornamenti</value>
-  </data>
-  <data name="UpdateCheckContent" xml:space="preserve">
-    <value>Attualmente stai eseguendo l'ultima versione.</value>
-  </data>
+
   <data name="AboutTitle" xml:space="preserve">
     <value>Informazioni su TeddyMerge</value>
   </data>
   <data name="AboutContent" xml:space="preserve">
-    <value>TeddyMerge è uno strumento per combinare rapidamente e facilmente PDF e immagini in un unico documento PDF.
-
-Versione 1.0.0</value>
+    <value>TeddyMerge è uno strumento per combinare rapidamente e facilmente PDF e immagini in un unico documento PDF.</value>
   </data>
 </root>

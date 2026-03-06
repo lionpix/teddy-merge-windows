@@ -70,15 +70,11 @@
   <data name="EmptyStateText.Text" xml:space="preserve">
     <value>PDFまたは画像をここにドラッグ＆ドロップ</value>
   </data>
-  <data name="CheckUpdateBtn.Text" xml:space="preserve">
-    <value>更新プログラムの確認</value>
-  </data>
+
   <data name="AboutBtn.Text" xml:space="preserve">
     <value>約</value>
   </data>
-  <data name="VersionBtn.Text" xml:space="preserve">
-    <value>バージョン</value>
-  </data>
+
   <data name="MergeDocsBtn.Content" xml:space="preserve">
     <value>ドキュメントを結合</value>
   </data>
@@ -112,18 +108,11 @@
   <data name="LanguageChangedContent" xml:space="preserve">
     <value>言語の変更を有効にするには、アプリケーションを再起動してください。</value>
   </data>
-  <data name="UpdateCheckTitle" xml:space="preserve">
-    <value>更新を確認</value>
-  </data>
-  <data name="UpdateCheckContent" xml:space="preserve">
-    <value>現在、最新バージョンを実行しています。</value>
-  </data>
+
   <data name="AboutTitle" xml:space="preserve">
     <value>TeddyMerge について</value>
   </data>
   <data name="AboutContent" xml:space="preserve">
-    <value>TeddyMerge は、PDF と画像をすばやく簡単に1つの PDF ドキュメントに結合するツールです。
-
-バージョン 1.0.0</value>
+    <value>TeddyMerge は、PDF と画像をすばやく簡単に1つの PDF ドキュメントに結合するツールです。</value>
   </data>
 </root>
