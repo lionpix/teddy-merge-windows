@@ -1,0 +1,17 @@
+<Solution>
+  <Configurations>
+    <Platform Name="arm64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Project Path="TeddyMerge.csproj">
+    <Configuration Solution="Debug|arm64" Project="Debug|arm64" />
+    <Configuration Solution="Debug|x64" Project="Debug|x64" />
+    <Configuration Solution="Debug|x86" Project="Debug|x86" />
+    <Configuration Solution="Release|arm64" Project="Release|arm64" />
+    <Configuration Solution="Release|x64" Project="Release|x64" />
+    <Configuration Solution="Release|x86" Project="Release|x86" />
+  </Project>
+</Solution>
