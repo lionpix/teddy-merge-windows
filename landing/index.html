@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeddyMerge - Seamless Document Merging</title>
+    <meta name="description"
+        content="Merge PDFs, images, and text files effortlessly with TeddyMerge. The ultimate cross-platform document utility.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="teddy_merge_wide_transparent.png" alt="TeddyMerge Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#" class="btn-primary">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div class="hero-content">
+                <h1>Merge Your World <span class="accent">Effortlessly</span></h1>
+                <p>The premium cross-platform tool for merging PDFs, images, and text files into one clean document.
+                    Fast, secure, and beautiful.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn-primary lg">Download</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container" style="text-align: right;">
+                    <img src="teddymerge_screenshot.jpg" alt="TeddyMerge App Screenshot" class="hero-image"
+                        style="width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.3s;"
+                        onclick="openLightbox(this.src)" onmouseover="this.style.transform='scale(1.02)'"
+                        onmouseout="this.style.transform='scale(1)'">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features container">
+            <h2 class="section-title">Why TeddyMerge?</h2>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="icon">🚀</div>
+                    <h3>Cross-Platform</h3>
+                    <p>Native performance on Windows, macOS, Android, and iOS. Use it everywhere.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="icon">📄</div>
+                    <h3>Multi-Format</h3>
+                    <p>Merge PDFs, JPGs, PNGs, TIFFs, and TXT files instantly into a single PDF.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="icon">🖱️</div>
+                    <h3>Drag & Drop</h3>
+                    <p>Intuitive interface. Just drag your files, reorder them, and hit merge.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="icon">🔒</div>
+                    <h3>Private & Secure</h3>
+                    <p>Processing happens locally on your device. Your documents never leave your hands.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Lion Pixel LLC. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox"
+        onclick="if(event.target === this || event.target.className === 'lightbox-close') closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = src;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+
+</html>

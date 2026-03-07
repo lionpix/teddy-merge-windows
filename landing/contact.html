@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TeddyMerge</title>
+    <meta name="description" content="Contact TeddyMerge Support">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 4rem auto;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .form-container label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-light);
+            font-family: inherit;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .form-container input:focus,
+        .form-container textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-container textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-container button {
+            width: 100%;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="teddy_merge_wide_transparent.png" alt="TeddyMerge Logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html" class="btn-primary">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-content container">
+        <section class="glass-card form-container">
+            <h2>Contact Us</h2>
+            <form action="https://submit-form.com/ROmjB7jYt">
+                <input type="hidden" name="_redirect" value="https://www.teddymerge.com/thanks.html" />
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name" required="" />
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required="" />
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Message" required=""></textarea>
+
+                <button type="submit" class="btn-primary">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Lion Pixel LLC. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
