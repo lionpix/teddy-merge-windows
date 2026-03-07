@@ -1,7 +1,14 @@
 UI Exception: Operation is not valid due to the current state of the object.
    at WinRT.ExceptionHelpers.<ThrowExceptionForHR>g__Throw|38_0(Int32 hr)
-   at ABI.Windows.Globalization.IApplicationLanguagesStaticsMethods.set_PrimaryLanguageOverride(IObjectReference _obj, String value)
-   at Windows.Globalization.ApplicationLanguages.set_PrimaryLanguageOverride(String value)
-   at TeddyMerge.Views.MainPage.OnLanguageClicked(Object sender, RoutedEventArgs e) in C:\Dev\LionPix\teddy-merge-windows\Views\MainPage.xaml.cs:line 161
-   at WinRT._EventSource_global__Microsoft_UI_Xaml_RoutedEventHandler.EventState.<GetEventInvoke>b__1_0(Object sender, RoutedEventArgs e)
-   at ABI.Microsoft.UI.Xaml.RoutedEventHandler.Do_Abi_Invoke(IntPtr thisPtr, IntPtr sender, IntPtr e)
+   at ABI.Windows.ApplicationModel.IPackageStaticsMethods.get_Current(IObjectReference _obj)
+   at Windows.ApplicationModel.Package.get_Current()
+   at TeddyMerge.Views.MainPage.OnAboutClicked(Object sender, RoutedEventArgs e) in C:\Dev\LionPix\teddy-merge-windows\Views\MainPage.xaml.cs:line 237
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__124_0(Object state)
+   at Microsoft.UI.Dispatching.DispatcherQueueSynchronizationContext.<>c__DisplayClass2_0.<Post>b__0()
+--- End of stack trace from previous location ---
+   at WinRT.ExceptionHelpers.<ThrowExceptionForHR>g__Throw|38_0(Int32 hr)
+   at ABI.Windows.ApplicationModel.IPackageStaticsMethods.get_Current(IObjectReference _obj)
+   at Windows.ApplicationModel.Package.get_Current()
+   at TeddyMerge.Views.MainPage.OnAboutClicked(Object sender, RoutedEventArgs e) in C:\Dev\LionPix\teddy-merge-windows\Views\MainPage.xaml.cs:line 237
+   at System.Threading.Tasks.Task.<>c.<ThrowAsync>b__124_0(Object state)
+   at Microsoft.UI.Dispatching.DispatcherQueueSynchronizationContext.<>c__DisplayClass2_0.<Post>b__0()

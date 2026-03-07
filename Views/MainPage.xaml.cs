@@ -234,11 +234,20 @@ public sealed partial class MainPage : Page
 
     private async void OnAboutClicked(object sender, RoutedEventArgs e)
     {
+        var versionString = PackageHelper.GetAppVersion();
+
         var contentPanel = new StackPanel { Spacing = 10 };
         contentPanel.Children.Add(new TextBlock 
         { 
             Text = _resourceLoader.GetString("AboutContent"), 
             TextWrapping = TextWrapping.Wrap 
+        });
+
+        contentPanel.Children.Add(new TextBlock 
+        { 
+            Text = string.Format(_resourceLoader.GetString("AboutVersion"), versionString), 
+            Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 141, 110, 99)),
+            FontSize = 12
         });
         
         var linkButton = new HyperlinkButton

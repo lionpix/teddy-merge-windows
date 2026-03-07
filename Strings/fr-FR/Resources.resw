@@ -115,4 +115,7 @@
   <data name="AboutContent" xml:space="preserve">
     <value>TeddyMerge est un outil permettant de combiner rapidement et facilement des PDF et des images en un seul document PDF.</value>
   </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version: {0}</value>
+  </data>
 </root>

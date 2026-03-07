@@ -1,4 +1,5 @@
 using Microsoft.UI.Xaml.Navigation;
+using TeddyMerge.Services;
 
 namespace TeddyMerge
 {
@@ -14,15 +15,31 @@ namespace TeddyMerge
         {
             try 
             {
-                var localAppData = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
-                var settingsPath = System.IO.Path.Combine(localAppData, "TeddyMerge", "settings.txt");
-                
-                if (System.IO.File.Exists(settingsPath))
+                if (PackageHelper.IsPackaged)
                 {
-                    string lang = System.IO.File.ReadAllText(settingsPath).Trim();
-                    if (!string.IsNullOrEmpty(lang))
+                    var settingsPath = System.IO.Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "settings.txt");
+                    
+                    if (System.IO.File.Exists(settingsPath))
                     {
-                        Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
+                        string lang = System.IO.File.ReadAllText(settingsPath).Trim();
+                        if (!string.IsNullOrEmpty(lang))
+                        {
+                            Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
+                        }
+                    }
+                }
+                else
+                {
+                    // Fallback for unpackaged mode
+                    var localAppData = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+                    var settingsPath = System.IO.Path.Combine(localAppData, "TeddyMerge", "settings.txt");
+                    if (System.IO.File.Exists(settingsPath))
+                    {
+                        string lang = System.IO.File.ReadAllText(settingsPath).Trim();
+                        if (!string.IsNullOrEmpty(lang))
+                        {
+                            Microsoft.Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = lang;
+                        }
                     }
                 }
 
