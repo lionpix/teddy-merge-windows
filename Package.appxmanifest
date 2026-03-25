@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="c0402968-9aaa-43a0-aa77-93fe5dd550b2"
-    Publisher="CN=User Name"
-    Version="1.0.1.0" />
+    Name="LionPixel.TeddyMerge"
+    Publisher="CN=645464C6-A7ED-4103-9EF2-F8154985F933"
+    Version="1.0.6.0" />
 
-  <mp:PhoneIdentity PhoneProductId="c0402968-9aaa-43a0-aa77-93fe5dd550b2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="9226366c-a0fd-4e52-a175-972052d11785" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>TeddyMerge</DisplayName>
-    <PublisherDisplayName>User Name</PublisherDisplayName>
+    <DisplayName>Teddy Merge</DisplayName>
+    <PublisherDisplayName>Lion Pixel</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -34,7 +34,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="TeddyMerge"
+        DisplayName="Teddy Merge"
         Description="TeddyMerge"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
